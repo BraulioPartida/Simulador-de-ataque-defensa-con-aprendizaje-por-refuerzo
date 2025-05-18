@@ -193,11 +193,12 @@ def generate_comparison_visualizations(all_results, model_names):
         rewards = [ep['total_reward'] for ep in all_results[name]['episodes']]
         rewards_data.append(rewards)
     
-    plt.boxplot(rewards_data, labels=model_names)
+    plt.boxplot(rewards_data, labels=model_names)  # En Matplotlib 3.9+ usar tick_labels en lugar de labels
     plt.title('Comparativa de Recompensas Totales', fontsize=16)
     plt.ylabel('Recompensa Total', fontsize=14)
     plt.grid(True, alpha=0.3)
     plt.savefig('./evaluation_results/plots/reward_comparison.png', dpi=300, bbox_inches='tight')
+    plt.close()  # Cerrar la figura para liberar memoria
     
     # 2. Comparación de métricas clave (gráfico de barras)
     metrics = ['total_reward_mean', 'steps_mean', 'final_nodes_compromised_mean', 
@@ -216,6 +217,7 @@ def generate_comparison_visualizations(all_results, model_names):
     
     plt.tight_layout()
     plt.savefig('./evaluation_results/plots/metrics_comparison.png', dpi=300, bbox_inches='tight')
+    plt.close()  # Cerrar la figura para liberar memoria
     
     # 3. Distribución de acciones
     plt.figure(figsize=(14, 8))
@@ -234,6 +236,7 @@ def generate_comparison_visualizations(all_results, model_names):
     plt.xticks(x + bar_width/2, [f'A{i}' for i in range(len(x))])
     plt.legend()
     plt.savefig('./evaluation_results/plots/action_distribution.png', dpi=300, bbox_inches='tight')
+    plt.close()  # Cerrar la figura para liberar memoria
     
     # 4. Trayectorias promedio (nodos comprometidos a lo largo del tiempo)
     plt.figure(figsize=(14, 8))
@@ -258,6 +261,7 @@ def generate_comparison_visualizations(all_results, model_names):
         # Graficar - limitar a longitud donde al menos hay datos significativos
         valid_length = np.sum(np.mean(all_trajectories > 0, axis=0) > 0.5)  # Al menos 50% de episodios tienen datos
         valid_length = max(valid_length, 20)  # Al menos mostrar 20 pasos
+        valid_length = min(valid_length, len(mean_trajectory))  # Asegurar que no exceda la longitud disponible
         
         x = np.arange(valid_length)
         plt.plot(x, mean_trajectory[:valid_length], label=name)
@@ -272,6 +276,7 @@ def generate_comparison_visualizations(all_results, model_names):
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.savefig('./evaluation_results/plots/nodes_progression.png', dpi=300, bbox_inches='tight')
+    plt.close()  # Cerrar la figura para liberar memoria
     
     # 5. Trayectorias promedio de nivel de alerta
     plt.figure(figsize=(14, 8))
@@ -296,6 +301,7 @@ def generate_comparison_visualizations(all_results, model_names):
         # Graficar - limitar a longitud donde al menos hay datos significativos
         valid_length = np.sum(np.mean(all_trajectories > 0, axis=0) > 0.1)  # Al menos 10% de episodios tienen datos
         valid_length = max(valid_length, 20)  # Al menos mostrar 20 pasos
+        valid_length = min(valid_length, len(mean_trajectory))  # Asegurar que no exceda la longitud disponible
         
         x = np.arange(valid_length)
         plt.plot(x, mean_trajectory[:valid_length], label=name)
@@ -310,6 +316,7 @@ def generate_comparison_visualizations(all_results, model_names):
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.savefig('./evaluation_results/plots/alert_progression.png', dpi=300, bbox_inches='tight')
+    plt.close()  # Cerrar la figura para liberar memoria
     
     print("Visualizaciones guardadas en './evaluation_results/plots/'")
 

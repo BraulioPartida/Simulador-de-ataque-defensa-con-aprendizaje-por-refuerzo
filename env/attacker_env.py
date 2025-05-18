@@ -159,9 +159,9 @@ class AttackerEnv(gym.Env):
                     for vuln in range(self.num_vulns):
                         if self.service_vulns[node, service, vuln] == 1 and self.np_random.random() < 0.7:
                             self.vulns_known[node, vuln] = 1
-                            reward += 0.2  # Bonus for finding a vulnerability
+                            reward += 0.5  # Bonus for finding a vulnerability
                     
-                    reward += 0.1
+                    reward += 0.05
                 else:
                     reward -= 0.05  # Penalty for scanning non-existent service
                 
@@ -190,7 +190,7 @@ class AttackerEnv(gym.Env):
                     if success:
                         self.nodes_compromised[node] = 1
                         self.privileges[node] = 1  # Get user privileges
-                        reward += 1.0
+                        reward += 1.2
                         
                         # Discover connected nodes
                         for i in range(self.num_nodes):

@@ -81,8 +81,8 @@ def main():
         gamma=0.99,             # Factor de descuento estándar
         train_freq=4,           # Frecuencia de actualización
         gradient_steps=1,       # Pasos de gradiente por actualización
-        target_update_interval=1000,
-        exploration_fraction=0.2,  # Exploración más larga
+        target_update_interval=1500,  # Actualización del objetivo más frecuente
+        exploration_fraction=0.1,  # Exploración más larga
         exploration_initial_eps=1.0,
         exploration_final_eps=0.05,
         max_grad_norm=10,       # Recorte de gradiente para estabilidad

@@ -21,7 +21,7 @@ def main():
     TRAIN_TIMESTEPS = 1_000_000  # Más pasos que DQN para mejor convergencia
     LEARNING_RATE = 3e-4        # Tasa de aprendizaje adaptada para PPO
     BATCH_SIZE = 64             # Tamaño de lote para muestreo
-    N_STEPS = 2048              # Pasos por actualización (horizonte)
+    N_STEPS = 1024               # Pasos por actualización (horizonte)
     SEED = 42
     
     # Crear entorno
@@ -81,10 +81,10 @@ def main():
         n_epochs=10,                # Número de epochs por actualización
         gamma=0.99,                 # Factor de descuento
         gae_lambda=0.95,            # Parámetro de estimación de ventaja generalizada
-        clip_range=0.2,             # Parámetro de recorte para PPO
+        clip_range=0.3,             # Parámetro de recorte para PPO
         clip_range_vf=None,         # No recortar función de valor
         normalize_advantage=True,   # Normalizar ventajas
-        ent_coef=0.01,              # Coeficiente de entropía para exploración
+        ent_coef=0.1,              # Coeficiente de entropía para exploración
         vf_coef=0.5,                # Coeficiente de función de valor
         max_grad_norm=0.5,          # Recorte de gradiente para estabilidad
         use_sde=False,              # No usar exploración dependiente del estado
