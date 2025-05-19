@@ -21,7 +21,7 @@ Este proyecto implementa un **simulador de ciberataques y contramedidas** basado
 1. Clona este repositorio:
 
    ```bash
-   git clone https://github.com/tuUsuario/Simulador-RL-Cybersec.git
+   git clone https://github.com/BraulioPartida/Simulador-de-ataque-defensa-con-aprendizaje-por-refuerzo.git
    cd Simulador-RL-Cybersec
    ```
 
