@@ -1,2 +1,7 @@
 numpy
 gymnasium
+stable-baselines3
+pandas
+matplotlib
+seaborn
+tqdm

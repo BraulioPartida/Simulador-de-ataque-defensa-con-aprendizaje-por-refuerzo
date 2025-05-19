@@ -54,16 +54,37 @@ Este proyecto implementa un **simulador de ciberataques y contramedidas** basado
 ## Estructura del proyecto
 
 ```text
-├── env/                       # Definición de AttackerEnv
-│   ├── __init__.py
-│   └── attacker_env.py        # Lógica del simulador MDP
-│
-├── train_dqn.py               # Script de entrenamiento DQN
-├── train_ppo.py               # Script de entrenamiento PPO
-├── compare_models.py          # Evaluación y comparación de modelos
-├── requirements.txt           # Dependencias Python
-├── README.md                  # Documentación
-└── evaluation_results/        # Resultados (logs, CSV, gráficos)
+Simulador-de-ataque-defensa-con-aprendizaje-por-refuerzo/
+├── agents/  
+│   ├── train_dqn.py  
+│   ├── train_ppo.py  
+│   └── compare_models.py  
+│  
+├── env/  
+│   ├── __init__.py  
+│   └── attacker_env.py  
+│  
+├── evaluation_results/  
+│   ├── comparison_stats.json  
+│   ├── all_episodes_data.csv  
+│   └── plots/  
+│       ├── reward_comparison.png  
+│       ├── metrics_comparison.png  
+│       ├── action_distribution.png  
+│       ├── nodes_progression.png  
+│       └── alert_progression.png  
+│  
+├── logs/  
+│   └── monitor/  
+│       └── monitor.csv  
+│  
+├── tests/  
+│   └── (scripts de prueba)  
+│  
+├── .gitignore  
+├── README.md  
+└── requirements.txt  
+
 ```
 
 ---
@@ -73,19 +94,19 @@ Este proyecto implementa un **simulador de ciberataques y contramedidas** basado
 ### Entrenar un modelo DQN
 
 ```bash
-python train_dqn.py
+python -m agents.train_dqn
 ```
 
 ### Entrenar un modelo PPO
 
 ```bash
-python train_ppo.py
+python -m agents.train_ppo
 ```
 
 ### Comparar agentes DQN vs PPO
 
 ```bash
-python compare_models.py
+python -m agents.evaluate
 ```
 
 Los scripts crean carpetas `models/` y `logs/`, guardan checkpoints, modelos finales y gráficos en `evaluation_results/`.
